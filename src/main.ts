@@ -8,6 +8,8 @@ const PORT = process?.env?.PORT || 8080;
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
+  app.enableShutdownHooks()
+
   //prisma setup errors
   const httpAdapter = app.get(HttpAdapterHost);
   app.useGlobalFilters(new PrismaKnownClientExceptions(httpAdapter));
